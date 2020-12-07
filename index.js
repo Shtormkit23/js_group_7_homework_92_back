@@ -17,7 +17,7 @@ app.ws("/chat", async (ws, req) => {
     const token = req.query.token;
     const user = await User.findOne({token:token});
     const id = user.username;
-    console.log('client connected! id=', id);
+    console.log('client connected = ', id);
     activeConnections[id] = ws;
     activeUsers.push(id)
 
@@ -72,7 +72,7 @@ app.ws("/chat", async (ws, req) => {
     });
 
     ws.on('close', (msg) => {
-        console.log('client disconnected! id=', id);
+        console.log('client disconnected =', id);
         delete activeConnections[id];
 
         activeUsers = activeUsers.filter(item => {
